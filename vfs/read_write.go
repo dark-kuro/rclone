@@ -130,7 +130,7 @@ func (fh *RWFileHandle) openPending(truncate bool) (err error) {
 		// Set the size to 0 since we are truncating and flag we need to write it back
 		fh.file.setSize(0)
 		fh.writeCalled = true
-		if fh.flags&os.O_CREATE != 0 && fh.file.exists() {
+		if fh.flags&os.O_CREATE == 0 && fh.file.exists() {
 			// create and empty file if it exists on the source
 			cacheFileOpenFlags |= os.O_CREATE
 		}
